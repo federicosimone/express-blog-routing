@@ -1,10 +1,8 @@
 const express = require('express')
 const router = express.Router();
 
-const posts = require('../data/posts')
 
-
-
+const postsController = require("../controllers/postsController")
 
 
 //Crud - Create 
@@ -15,13 +13,9 @@ router.post('/', (req, res) => {
 
 //cRud - Read 
 
-router.get('/', (req, res) => {
-    res.json(posts);
-})
+router.get('/', postsController.index)
 
-router.get('/:id', (req, res) => {
-    res.send(`Stai visualizzando il post: ${req.params.id}`)
-})
+router.get('/:id', postsController.show)
 
 //crUd - Update 
 
@@ -35,9 +29,7 @@ router.patch('/:id', (req, res) => {
 
 //cruD - Delete
 
-router.delete('/:id', (req, res) => {
-    res.send(` Sei sicuro di voler eliminare il post con id: ${req.params.id}? `)
-})
+router.delete('/:id', postsController.destroy)
 
 
 
