@@ -4,6 +4,20 @@ function index(req, res) {
     res.json(posts);
 }
 
+function store(req, res) {
+
+    const newPost = {
+        id: posts[posts.length - 1].id + 1,
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    };
+    posts.push(newPost)
+    console.log(newPost)
+    res.status(201).json(newPost);
+}
+
 function show(req, res) {
 
     const id = Number(req.params.id);
@@ -45,7 +59,8 @@ function destroy(req, res) {
 const funzioni = {
     index,
     show,
-    destroy
+    destroy,
+    store
 }
 
 module.exports = funzioni

@@ -7,19 +7,9 @@ const postsController = require("../controllers/postsController")
 
 //Crud - Create 
 
-router.post('/', (req, res) => {
+router.post('/', postsController.index)
 
-    const newPost = {
-        id: posts[posts.length - 1].id + 1,
-        title: req.body.title,
-        content: req.body.content,
-        image: req.body.image,
-        tags: req.body.tags
-    };
-    posts.push(newPost)
-    console.log(newPost)
-    res.status(201).json(newPost);
-})
+router.post('/', postsController.store)
 
 //cRud - Read 
 
