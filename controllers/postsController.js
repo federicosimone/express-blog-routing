@@ -80,7 +80,7 @@ function update(req, res) { //modifico interamente l'elemento
         return res.status(404).json({ error: "Not Found", message: "Post non trovato" });
     }
 
-    //sto comunicando che il la proprietà di result (result.proprietà) deve modificarsi in base a cosa viene fornito dall' oggetto
+    //sto comunicando che la proprietà di result (result.proprietà) deve modificarsi in base a cosa viene fornito dall' oggetto
     //fornito nel body di postman (req.body.proprietà)
 
     result.title = req.body.title
