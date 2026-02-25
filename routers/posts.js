@@ -19,9 +19,7 @@ router.get('/:id', postsController.show)
 
 //crUd - Update 
 
-router.put('/:id', (req, res) => {
-    res.send(`Stai chiedendo di modificare l'intero post con id: ${req.params.id}`)
-})
+router.put('/:id', postsController.update)
 
 router.patch('/:id', (req, res) => {
     res.send(`Stai chiedendo di modificare parte del post con id: ${req.params.id}`)

@@ -56,11 +56,34 @@ function destroy(req, res) {
     return res.sendStatus(204);
 }
 
+function update(req, res) {
+
+    const id = Number(req.params.id);
+
+    if (id < 0) {
+        return res.status(400).json({ error: "Error", message: "ID non valido" });
+    }
+
+    const result = posts.find(post => post.id == id);
+
+    if (!result) {
+        return res.status(404).json({ error: "Not Found", message: "Post non trovato" });
+    }
+
+    result.title = req.body.title
+    result.content = req.body.content
+    result.image = req.body.image
+    result.tags = req.body.tags
+
+    return res.json(result);
+}
+
 const funzioni = {
     index,
     show,
     destroy,
-    store
+    store,
+    update
 }
 
 module.exports = funzioni
