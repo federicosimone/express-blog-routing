@@ -56,24 +56,39 @@ function destroy(req, res) {
     return res.sendStatus(204);
 }
 
-function update(req, res) {
+
+
+function update(req, res) { //modifico interamente l'elemento 
+
+    //controllo che l'id inserito sia un numero 
 
     const id = Number(req.params.id);
+
+    //se l'id inserito non corrisponde ad un numero o minore di 0, allora dico che l'id non è valido 
 
     if (id < 0) {
         return res.status(400).json({ error: "Error", message: "ID non valido" });
     }
 
+    //creo costante con cui trovo l'elemento che cerco all'interno dell'array 
+
     const result = posts.find(post => post.id == id);
+
+    //se non trovo il risultato restituisco l'errore
 
     if (!result) {
         return res.status(404).json({ error: "Not Found", message: "Post non trovato" });
     }
 
+    //sto comunicando che il la proprietà di result (result.proprietà) deve modificarsi in base a cosa viene fornito dall' oggetto
+    //fornito nel body di postman (req.body.proprietà)
+
     result.title = req.body.title
     result.content = req.body.content
     result.image = req.body.image
     result.tags = req.body.tags
+
+    //restituisco un json del solo elemento modificato 
 
     return res.json(result);
 }
