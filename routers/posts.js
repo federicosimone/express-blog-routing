@@ -21,9 +21,8 @@ router.get('/:id', postsController.show)
 
 router.put('/:id', postsController.update)
 
-router.patch('/:id', (req, res) => {
-    res.send(`Stai chiedendo di modificare parte del post con id: ${req.params.id}`)
-})
+router.patch('/:id', postsController.modify)
+
 
 //cruD - Delete
 
